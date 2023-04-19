@@ -8,7 +8,7 @@ import CommentForm from "./CommentForm";
 const Recipe = () => {
   const dispatch = useDispatch();
   const { subDishId } = useParams();
-  const recipe = useSelector((state) => state.dishes.recipe);
+  const recipe = useSelector((state) => state.dishes.recipe[0]);
 
   useEffect(() => {
     dispatch(fetchRecipe(subDishId));
@@ -23,6 +23,7 @@ const Recipe = () => {
       </div>
     );
   }
+
   return (
     <div>
       <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
@@ -36,6 +37,12 @@ const Recipe = () => {
               <li key={index}>{ingredient}</li>
             ))}
         </ul>
+        {recipe.description && ( // conditional rendering for description
+          <div>
+            <Typography variant="h6">Description:</Typography>
+            <p>{recipe.description}</p>
+          </div>
+        )}
         <Typography variant="h6">Instructions:</Typography>
         <ol>
           {recipe.instructions &&

@@ -1,0 +1,158 @@
+{
+  "mainDishes": [
+    {
+      "idCategory": "1",
+      "strCategory": "Lebanese",
+      "strCategoryThumb": "https://cdn5.vectorstock.com/i/1000x1000/58/04/lebanese-food-stamp-vector-19035804.jpg"
+    },
+    {
+      "idCategory": "2",
+      "strCategory": "Italian",
+      "strCategoryThumb": "https://img.freepik.com/premium-vector/italian-food-restaurant-logo_18099-2526.jpg?w=2000"
+    },
+    {
+      "idCategory": "3",
+      "strCategory": "Mexican",
+      "strCategoryThumb": "https://previews.123rf.com/images/rainart123/rainart1231902/rainart123190200010/129164880-mexican-food-logo-with-sombrero-illustration.jpg"
+    },
+    {
+      "idCategory": "4",
+      "strCategory": "Chinese",
+      "strCategoryThumb": "https://cdn1.vectorstock.com/i/1000x1000/92/90/chinese-food-logo-noodle-and-chopsticks-vector-28699290.jpg"
+    }
+  ],
+  "subDishes": [
+    {
+      "id": "1",
+      "mainDishId": "1",
+      "name": "Hummus",
+      "image": "https://static.vecteezy.com/system/resources/thumbnails/008/242/389/small/chickpeas-hummus-icon-in-flat-style-isolated-on-white-background-traditional-arabic-food-vegetarian-vegan-meal-illustration-vector.jpg"
+    },
+    {
+      "id": "2",
+      "mainDishId": "1",
+      "name": "Baklava",
+      "image": "https://img.freepik.com/premium-vector/baklava-logo-pastry-bakery-vector_434503-217.jpg?w=2000"
+    },
+    {
+      "id": "3",
+      "mainDishId": "2",
+      "name": "Grilled Salmon",
+      "image": "https://img.freepik.com/premium-vector/ssmoked-grilled-salmon-abstract-sign-symbol-logo-template_167715-866.jpg?w=2000"
+    },
+    {
+      "id": "4",
+      "mainDishId": "2",
+      "name": "Shrimp Scampi",
+      "image": "https://static01.nyt.com/images/2022/06/02/dining/ShrimpScampi_thumb/ShrimpScampi_thumb-threeByTwoMediumAt2X.jpg"
+    },
+    {
+      "id": "5",
+      "mainDishId": "3",
+      "name": "Tacos",
+      "image": "https://img.freepik.com/premium-vector/tacos-mexican-food-logo-template-with-funny-character-vector_141211-27.jpg?w=740"
+    },
+    {
+      "id": "6",
+      "mainDishId": "3",
+      "name": "Guacamole",
+      "image": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2019/04/Guacamole-1-2.jpg"
+    },
+    {
+      "id": "7",
+      "mainDishId": "4",
+      "name": "Kung Pao Chicken",
+      "image": "https://thewoksoflife.com/wp-content/uploads/2019/04/kung-pao-chicken-11.jpg"
+    },
+    {
+      "id": "8",
+      "mainDishId": "4",
+      "name": "Fried Rice",
+      "image": "https://img.freepik.com/premium-vector/fried-rice-logo-simple-modern-design_518759-187.jpg?w=2000"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "1",
+      "subDishId": "1",
+      "name": "Hummus",
+      "ingredients": ["Chickpeas", "Tahini", "Lemon", "Garlic"],
+      "description": "A creamy and delicious hummus recipe.",
+      "instructions": [
+        "Drain and rinse the chickpeas.",
+        "In a food processor, combine the chickpeas, tahini, lemon juice, garlic, and salt. Blend until smooth and creamy.",
+        "Add a tablespoon of water at a time until desired consistency is reached.",
+        "Serve with pita bread and vegetables for dipping."
+      ]
+    },
+    {
+      "id": "2",
+      "subDishId": "2",
+      "name": "Baklava",
+      "ingredients": ["Phyllo Dough", "Walnuts", "Sugar", "Honey"],
+      "description": "A sweet and crispy Turkish dessert.",
+      "instructions": [
+        "Preheat the oven to 350°F (175°C).",
+        "In a food processor, chop the walnuts into small pieces.",
+        "Mix the chopped walnuts with sugar in a bowl.",
+        "Place a layer of phyllo dough in a baking dish and brush with melted butter.",
+        "Repeat until you have 7 layers.",
+        "Spread the walnut mixture over the phyllo dough.",
+        "Add another 7 layers of phyllo dough, brushing each layer with melted butter.",
+        "Using a sharp knife, cut the baklava into diamond shapes.",
+        "Bake for 45 minutes or until golden brown.",
+        "In a saucepan, mix honey and water and bring to a boil.",
+        "Pour the hot syrup over the baklava.",
+        "Let the baklava cool before serving."
+      ]
+    },
+    {
+      "id": "3",
+      "subDishId": "3",
+      "name": "Grilled Salmon",
+      "ingredients": [
+        "Salmon fillets",
+        "Olive oil",
+        "Lemon",
+        "Garlic",
+        "Salt",
+        "Pepper"
+      ],
+      "description": "A flavorful and healthy grilled salmon dish.",
+      "instructions": [
+        "Preheat the grill to medium-high heat.",
+        "In a small bowl, whisk together olive oil, lemon juice, minced garlic, salt, and pepper.",
+        "Brush the salmon fillets with the olive oil mixture.",
+        "Place the salmon on the grill and cook for 4-5 minutes per side, or until cooked through.",
+        "Remove the salmon from the grill and let rest for a few minutes before serving."
+      ]
+    },
+    {
+      "id": "4",
+      "subDishId": "4",
+      "name": "Shrimp Scampi",
+      "ingredients": [
+        "Shrimp",
+        "Olive oil",
+        "Butter",
+        "Garlic",
+        "White wine",
+        "Lemon",
+        "Parsley",
+        "Salt",
+        "Pepper"
+      ],
+      "description": "A delicious and quick shrimp scampi recipe.",
+      "instructions": [
+        "In a large skillet, heat the olive oil and butter over medium heat.",
+        "Add the minced garlic and cook for 1 minute.",
+        "Add the shrimp to the skillet and cook until pink, about 2-3 minutes per side.",
+        "Remove the shrimp from the skillet and set aside.",
+        "Add the white wine and lemon juice to the skillet, and bring to a simmer.",
+        "Cook for 2 minutes, then add the cooked shrimp back to the skillet.",
+        "Stir in the chopped parsley, and season with salt and pepper.",
+        "Serve the shrimp scampi over pasta or rice."
+      ]
+    }
+  ]
+}

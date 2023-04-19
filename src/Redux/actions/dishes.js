@@ -3,109 +3,79 @@ import {
   FETCH_SUB_DISHES,
   FETCH_RECIPE,
   ADD_DISH,
+  ADD_RECIPE,
 } from "./types";
 import axios from "axios";
 
-import data from "../../../public/data.json";
-
 export const fetchMainDishes = () => async (dispatch) => {
-  const categories = data.mainDishes.map((category) => {
-    const thumbnail = `${category.strCategoryThumb}/preview`;
-    return {
-      ...category,
-      strCategoryThumb: thumbnail,
-    };
-  });
-
-  dispatch({
-    type: FETCH_MAIN_DISHES,
-    payload: categories,
-  });
-};
-
-// Update fetchSubDishes action creator
-export const fetchSubDishes = (mainDishId) => async (dispatch) => {
-  const storedSubDishes = JSON.parse(localStorage.getItem("subDishes"));
-  const meals = storedSubDishes
-    ? storedSubDishes.filter((meal) => meal.mainDishId === mainDishId)
-    : data.subDishes.filter((meal) => meal.mainDishId === mainDishId);
-
-  dispatch({
-    type: FETCH_SUB_DISHES,
-    payload: meals,
-  });
-};
-
-// Update fetchRecipe action creator
-export const fetchRecipe = (subDishId) => async (dispatch, getState) => {
-  const state = getState();
-  const newDish = state.dishes.newSubDish;
-
-  // If the newly added dish matches the requested subDishId, use it as the recipe
-  if (newDish && newDish.id === subDishId) {
+  try {
+    const res = await axios.get("http://localhost:5000/mainDishes");
+    const categories = res.data;
     dispatch({
-      type: FETCH_RECIPE,
-      payload: newDish,
+      type: FETCH_MAIN_DISHES,
+      payload: categories,
     });
-  } else {
-    // Else, fetch the recipe from the JSON file as before
-    try {
-      const res = await axios.get(
-        `${process.env.PUBLIC_URL}/data/recipes/${subDishId}.json`
-      );
-      dispatch({
-        type: FETCH_RECIPE,
-        payload: res.data,
-      });
-    } catch (error) {
-      console.error("Error fetching recipe:", error);
-    }
+  } catch (error) {
+    console.error("Error fetching main dishes:", error);
   }
 };
 
-// dishes.js
-// ...
-// dishes.js
-export const addDish = (dish) => {
-  return (dispatch) => {
-    const newId = Date.now();
+export const fetchSubDishes = (mainDishId) => async (dispatch) => {
+  try {
+    const res = await axios.get("http://localhost:5000/subDishes");
+    const meals = res.data.filter(
+      (meal) => meal.mainDishId === mainDishId.toString()
+    );
+    dispatch({
+      type: FETCH_SUB_DISHES,
+      payload: meals,
+    });
+  } catch (error) {
+    console.error("Error fetching sub dishes:", error);
+  }
+};
 
-    const updatedSubDishes = [
-      ...JSON.parse(localStorage.getItem("subDishes")),
-      {
-        id: newId,
+export const fetchRecipe = (subDishId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/recipes`);
+      const recipe = response.data.filter(
+        (recipe) => recipe.subDishId === subDishId.toString()
+      );
+      dispatch({ type: FETCH_RECIPE, payload: recipe });
+    } catch (error) {
+      console.error("Error fetching recipe:", error);
+    }
+  };
+};
+
+// In dishes.js (Redux actions file)
+export const addDish = (dish) => {
+  return async (dispatch) => {
+    try {
+      // add sub dish
+      const newSubDish = await axios.post("http://localhost:5000/subDishes", {
         mainDishId: dish.mainDishId,
         name: dish.name,
         image: dish.image,
-      },
-    ];
+      });
 
-    const updatedRecipes = [
-      ...JSON.parse(localStorage.getItem("recipes")),
-      {
-        subDishId: newId,
+      // add recipe
+      const newRecipe = await axios.post("http://localhost:5000/recipes", {
+        subDishId: newSubDish.data.id,
         name: dish.name,
         ingredients: dish.ingredients,
         description: dish.description,
-      },
-    ];
+        instructions: dish.instructions,
+      });
 
-    localStorage.setItem("subDishes", JSON.stringify(updatedSubDishes));
-    localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
+      // dispatch FETCH_SUB_DISHES action
+      dispatch(fetchSubDishes(dish.mainDishId));
 
-    dispatch({
-      type: ADD_DISH,
-      payload: {
-        ...dish,
-        id: newId,
-        timestamp: Date.now(),
-      },
-    });
-
-    // Dispatch updated subDishes
-    dispatch({
-      type: FETCH_SUB_DISHES,
-      payload: updatedSubDishes,
-    });
+      // dispatch FETCH_RECIPE action for the newly created recipe
+      dispatch(fetchRecipe(newSubDish.data.id));
+    } catch (error) {
+      console.error("Error adding dish:", error);
+    }
   };
 };

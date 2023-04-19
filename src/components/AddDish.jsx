@@ -18,6 +18,8 @@ const AddDish = () => {
   const [ingredients, setIngredients] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState("");
+  const [instructions, setInstructions] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,8 +42,10 @@ const AddDish = () => {
       name.trim() &&
       ingredients.trim() &&
       imageFile &&
-      description.trim()
+      description.trim() &&
+      instructions.trim()
     ) {
+      console.log("Form validation passed");
       const imageUrl = await uploadImage(imageFile);
 
       const newDish = {
@@ -52,16 +56,22 @@ const AddDish = () => {
           .map((ingredient) => ingredient.trim()),
         image: imageUrl,
         description,
+        instructions: instructions.split(/\r?\n/), // Split instructions by newline
       };
       dispatch(addDish(newDish));
+      console.log("Dish dispatched", newDish);
       setName("");
       setIngredients("");
       setImageFile(null);
       setDescription("");
       setMainDishId("");
+      setInstructions("");
       navigate("/");
+    } else {
+      console.log("Form validation failed");
     }
   };
+
   return (
     <div>
       <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
@@ -81,12 +91,10 @@ const AddDish = () => {
               }}
               style={{ marginBottom: "1rem" }}
             >
-              <option value=""></option>
-              {/* Add your main dish categories here */}
-              <option value="1">Arabic Food</option>
-              <option value="2">Turkish Food</option>
-              <option value="3">Sea Food</option>
-              <option value="4">Street Food</option>
+              <option value="1">Lebanese Food</option>
+              <option value="2">Italian Food</option>
+              <option value="3">Mexican Food</option>
+              <option value="4">Chinese Food</option>
             </TextField>
             <TextField
               fullWidth
@@ -119,6 +127,14 @@ const AddDish = () => {
               onChange={(e) => setDescription(e.target.value)}
               style={{ marginBottom: "1rem" }}
             />
+            <TextField
+              fullWidth
+              label="Instructions"
+              value={instructions}
+              onChange={(e) => setInstructions(e.target.value)}
+              style={{ marginBottom: "1rem" }}
+            />
+
             <Button variant="contained" color="primary" type="submit" fullWidth>
               Add Dish
             </Button>

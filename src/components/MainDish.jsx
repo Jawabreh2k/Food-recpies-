@@ -13,7 +13,7 @@ const MainDish = () => {
   useEffect(() => {
     dispatch(fetchSubDishes(mainDishId));
   }, [dispatch, mainDishId]);
-  console.log(subDishes);
+
   return (
     <div>
       <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
@@ -24,9 +24,23 @@ const MainDish = () => {
           subDishes.map((subDish) => (
             <Grid item key={subDish.id} xs={12} sm={6} md={4} lg={3}>
               <Paper
-                elevation={3}
-                style={{ padding: "1rem", textAlign: "center" }}
+                elevation={2}
+                style={{
+                  padding: "1rem",
+                  textAlign: "center",
+                  height: "300px",
+                  width: "200px",
+                }}
               >
+                <img
+                  src={subDish.image}
+                  alt={subDish.name}
+                  style={{
+                    marginBottom: "1rem",
+                    width: "200px",
+                    height: "200px",
+                  }}
+                />
                 <Typography variant="h5">{subDish.name}</Typography>
                 <Button
                   variant="contained"

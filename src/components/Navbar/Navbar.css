@@ -1,0 +1,35 @@
+.navbar {
+  background-color: #212121;
+  color: white;
+  height: 64px;
+}
+
+.navbar__logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.navbar__link {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.navbar__link:hover {
+  text-decoration: underline;
+}
+
+.navbar__button {
+  margin-left: auto;
+  color: white;
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: inherit;
+}
