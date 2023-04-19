@@ -5,7 +5,6 @@ import MainDish from "./components/MainDish";
 import Recipe from "./components/Recipe";
 import AddDish from "./components/AddDish";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Container } from "@material-ui/core";
 
 const App = () => {
   return (
