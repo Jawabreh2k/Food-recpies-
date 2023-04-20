@@ -1,0 +1,28 @@
+.recipe {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.recipe h4 {
+  margin-bottom: 1rem;
+}
+.recipe-paper {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-paper h6 {
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.recipe ul,
+.recipe ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}

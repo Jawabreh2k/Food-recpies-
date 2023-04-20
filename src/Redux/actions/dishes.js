@@ -1,10 +1,4 @@
-import {
-  FETCH_MAIN_DISHES,
-  FETCH_SUB_DISHES,
-  FETCH_RECIPE,
-  ADD_DISH,
-  ADD_RECIPE,
-} from "./types";
+import { FETCH_MAIN_DISHES, FETCH_SUB_DISHES, FETCH_RECIPE } from "./types";
 import axios from "axios";
 
 export const fetchMainDishes = () => async (dispatch) => {
@@ -49,18 +43,15 @@ export const fetchRecipe = (subDishId) => {
   };
 };
 
-// In dishes.js (Redux actions file)
 export const addDish = (dish) => {
   return async (dispatch) => {
     try {
-      // add sub dish
       const newSubDish = await axios.post("http://localhost:5000/subDishes", {
         mainDishId: dish.mainDishId,
         name: dish.name,
         image: dish.image,
       });
 
-      // add recipe
       const newRecipe = await axios.post("http://localhost:5000/recipes", {
         subDishId: newSubDish.data.id,
         name: dish.name,
@@ -69,10 +60,8 @@ export const addDish = (dish) => {
         instructions: dish.instructions,
       });
 
-      // dispatch FETCH_SUB_DISHES action
       dispatch(fetchSubDishes(dish.mainDishId));
 
-      // dispatch FETCH_RECIPE action for the newly created recipe
       dispatch(fetchRecipe(newSubDish.data.id));
     } catch (error) {
       console.error("Error adding dish:", error);

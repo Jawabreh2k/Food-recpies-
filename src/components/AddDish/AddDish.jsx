@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addDish } from "../Redux/actions/dishes";
+import { addDish } from "../../Redux/actions/dishes";
 import { useNavigate } from "react-router-dom";
 import {
   TextField,
@@ -10,7 +10,9 @@ import {
   InputLabel,
 } from "@material-ui/core";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, app } from "../firebase";
+import { storage, app } from "../../firebase";
+
+import "./AddDish.css";
 
 const AddDish = () => {
   const [mainDishId, setMainDishId] = useState("");
@@ -74,7 +76,12 @@ const AddDish = () => {
 
   return (
     <div>
-      <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
+      <Typography
+        className="test"
+        variant="h4"
+        align="center"
+        style={{ margin: "1rem" }}
+      >
         Add New Dish
       </Typography>
       <Grid container justifyContent="center">

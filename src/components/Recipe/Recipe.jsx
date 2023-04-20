@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRecipe } from "../Redux/actions/dishes";
+import { fetchRecipe } from "../../Redux/actions/dishes";
 import { useParams } from "react-router-dom";
 import { Typography, Paper } from "@material-ui/core";
-import CommentForm from "./CommentForm";
-
+import CommentForm from "../CommentForm/CommentForm";
+import "./Recipe.css";
 const Recipe = () => {
   const dispatch = useDispatch();
   const { subDishId } = useParams();
@@ -25,7 +25,7 @@ const Recipe = () => {
   }
 
   return (
-    <div>
+    <div className="recipe">
       <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
         {recipe.name}
       </Typography>
@@ -37,7 +37,7 @@ const Recipe = () => {
               <li key={index}>{ingredient}</li>
             ))}
         </ul>
-        {recipe.description && ( // conditional rendering for description
+        {recipe.description && (
           <div>
             <Typography variant="h6">Description:</Typography>
             <p>{recipe.description}</p>

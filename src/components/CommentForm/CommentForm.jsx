@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addComment } from "../Redux/actions/comments";
+import { addComment } from "../../Redux/actions/comments";
 import {
   TextField,
   Button,
@@ -26,7 +26,7 @@ const CommentForm = ({ subDishId }) => {
   };
 
   return (
-    <div>
+    <div className="commentForm">
       <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
         Comments
       </Typography>

@@ -1,0 +1,17 @@
+.addDish {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.addDish h4 {
+  margin-bottom: 1rem;
+}
+
+.addDish-formControl {
+  margin-bottom: 1rem;
+}
+.test {
+  margin-top: 100px;
+}

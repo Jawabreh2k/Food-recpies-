@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
-import LandingPage from "./components/LandingPage";
-import MainDish from "./components/MainDish";
-import Recipe from "./components/Recipe";
-import AddDish from "./components/AddDish";
+import LandingPage from "./components/LandingPage/LandingPage";
+import MainDish from "./components/MainDish/MainDish";
+import Recipe from "./components/Recipe/Recipe";
+import AddDish from "./components/AddDish/AddDish";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {

@@ -5,8 +5,8 @@ import "./Navbar.css"; // import the CSS file
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
-      <Toolbar className="navbar-container">
+    <AppBar position="static" className="test">
+      <header className="navbar">
         <Typography variant="h6">
           <Link to="/" className="navbar-link">
             Recipe App
@@ -15,7 +15,7 @@ const Navbar = () => {
         <Button color="inherit" component={Link} to="/add-dish">
           Add Dish
         </Button>
-      </Toolbar>
+      </header>
     </AppBar>
   );
 };

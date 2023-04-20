@@ -1,0 +1,26 @@
+.commentForm {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.commentForm h4 {
+  margin-bottom: 1rem;
+}
+
+.commentForm-paper {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.commentForm-listItem {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.commentForm-listItem:last-child {
+  border-bottom: none;
+}
