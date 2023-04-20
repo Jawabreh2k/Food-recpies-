@@ -4,7 +4,7 @@ import { fetchRecipe } from "../../Redux/actions/dishes";
 import { useParams } from "react-router-dom";
 import { Typography, Paper } from "@material-ui/core";
 import CommentForm from "../CommentForm/CommentForm";
-import "./Recipe.css";
+import "./Recipe.module.css";
 const Recipe = () => {
   const dispatch = useDispatch();
   const { subDishId } = useParams();

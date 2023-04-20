@@ -8,6 +8,7 @@ import {
   Typography,
   Grid,
   InputLabel,
+  MenuItem,
 } from "@material-ui/core";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage, app } from "../../firebase";
@@ -37,7 +38,6 @@ const AddDish = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("handleSubmit called");
     e.preventDefault();
     if (
       mainDishId &&
@@ -47,7 +47,6 @@ const AddDish = () => {
       description.trim() &&
       instructions.trim()
     ) {
-      console.log("Form validation passed");
       const imageUrl = await uploadImage(imageFile);
 
       const newDish = {
@@ -58,10 +57,9 @@ const AddDish = () => {
           .map((ingredient) => ingredient.trim()),
         image: imageUrl,
         description,
-        instructions: instructions.split(/\r?\n/), // Split instructions by newline
+        instructions: instructions.split(",").map((line) => line.trim()),
       };
       dispatch(addDish(newDish));
-      console.log("Dish dispatched", newDish);
       setName("");
       setIngredients("");
       setImageFile(null);
@@ -70,10 +68,9 @@ const AddDish = () => {
       setInstructions("");
       navigate("/");
     } else {
-      console.log("Form validation failed");
+      alert("Please fill in all fields and upload an image.");
     }
   };
-
   return (
     <div>
       <Typography
@@ -93,15 +90,15 @@ const AddDish = () => {
               label="Main Category"
               value={mainDishId}
               onChange={(e) => setMainDishId(e.target.value)}
-              SelectProps={{
-                native: true,
-              }}
               style={{ marginBottom: "1rem" }}
             >
-              <option value="1">Lebanese Food</option>
-              <option value="2">Italian Food</option>
-              <option value="3">Mexican Food</option>
-              <option value="4">Chinese Food</option>
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="1">Lebanese Food</MenuItem>
+              <MenuItem value="2">Italian Food</MenuItem>
+              <MenuItem value="3">Mexican Food</MenuItem>
+              <MenuItem value="4">Chinese Food</MenuItem>
             </TextField>
             <TextField
               fullWidth
@@ -136,7 +133,7 @@ const AddDish = () => {
             />
             <TextField
               fullWidth
-              label="Instructions"
+              label="Instructions (comma separated)"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               style={{ marginBottom: "1rem" }}

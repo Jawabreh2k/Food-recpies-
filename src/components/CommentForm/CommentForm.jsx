@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addComment } from "../../Redux/actions/comments";
 import {
@@ -9,6 +9,7 @@ import {
   ListItem,
   Paper,
 } from "@material-ui/core";
+import styles from "./CommentForm.module.css";
 
 const CommentForm = ({ subDishId }) => {
   const [comment, setComment] = useState("");
@@ -17,20 +18,23 @@ const CommentForm = ({ subDishId }) => {
     (state) => state.comments.comments[subDishId] || []
   );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (comment.trim()) {
-      dispatch(addComment(comment, subDishId));
-      setComment("");
-    }
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (comment.trim()) {
+        dispatch(addComment(comment, subDishId));
+        setComment("");
+      }
+    },
+    [comment, dispatch, subDishId]
+  );
 
   return (
-    <div className="commentForm">
-      <Typography variant="h4" align="center" style={{ margin: "1rem" }}>
+    <div className={styles.commentForm}>
+      <Typography variant="h4" align="center" className={styles.title}>
         Comments
       </Typography>
-      <Paper elevation={3} style={{ padding: "1rem", margin: "1rem" }}>
+      <Paper elevation={3} className={styles.paper}>
         <List>
           {comments.map((c, index) => (
             <ListItem key={index}>{c}</ListItem>
@@ -43,7 +47,7 @@ const CommentForm = ({ subDishId }) => {
           label="Add a comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          style={{ marginBottom: "1rem" }}
+          className={styles.textField}
         />
         <Button variant="contained" color="primary" type="submit" fullWidth>
           Add Comment
